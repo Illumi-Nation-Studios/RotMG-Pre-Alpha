@@ -12,14 +12,14 @@ import javax.swing.JFrame;
 
 import com.illumination.realm.graphics.Screen;
 
-@SuppressWarnings({ "serial", "unused"})
+@SuppressWarnings({ "serial", "unused" })
 public class Game extends Canvas implements Runnable {
-	public static int width = 400;
-	public static int height = width / 16 * 9;
+	public static int width = 320;
+	public static int height = width / 16 * 8;
 	public static int scale = 3;
 	public static int sWidth = width * scale;
 	public static int sHeight = height * scale;
-	
+
 	public static String title = "RotMG Pre-Alpha |";
 
 	private Thread thread;
@@ -68,7 +68,7 @@ public class Game extends Canvas implements Runnable {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			while(delta >= 1) {
+			while (delta >= 1) {
 				update();
 				updates++;
 				delta--;
