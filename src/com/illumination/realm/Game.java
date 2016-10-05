@@ -11,8 +11,9 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.illumination.realm.graphics.Screen;
+import com.illumination.realm.input.Keyboard;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({ "serial" })
 public class Game extends Canvas implements Runnable {
 	public static int width = 480;
 	public static int height = width / 16 * 8;
@@ -26,6 +27,8 @@ public class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private boolean running = false;
 
+	private Keyboard key;
+
 	private Screen screen;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -36,8 +39,10 @@ public class Game extends Canvas implements Runnable {
 		setPreferredSize(size);
 
 		screen = new Screen(width, height);
-
 		frame = new JFrame();
+		key = new Keyboard();
+
+		addKeyListener(key);
 	}
 
 	public synchronized void start() {
@@ -89,9 +94,11 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	int x = 0, y = 0; 
+	int x = 0, y = 0;
+
 	public void update() {
 		System.out.println("Updating...");
+		key.update();
 		x++;
 		y++;
 	}
@@ -105,7 +112,7 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-		
+
 		screen.render(x, y);
 
 		for (int i = 0; i < pixels.length; i++) {
