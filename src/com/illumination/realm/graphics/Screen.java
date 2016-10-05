@@ -47,6 +47,9 @@ public class Screen {
 	public void renderTile(int xp, int yp, Tile tile) {
 		for (int y = 0; y < tile.sprite.SIZE; y++) {
 			int ya = y + yp;
+			for (int x = 0; x < tile.sprite.SIZE; x++) {
+				int xa = x + xp;
+			}
 		}
 	}
 	
