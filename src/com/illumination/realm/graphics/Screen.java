@@ -2,9 +2,6 @@ package com.illumination.realm.graphics;
 
 import java.util.Random;
 
-import com.illumination.realm.Game;
-
-@SuppressWarnings({ "unused" })
 public class Screen {
 	private int width, height;
 	public final int mapSize = 64;

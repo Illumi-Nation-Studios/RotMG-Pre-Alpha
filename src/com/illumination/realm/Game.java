@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import com.illumination.realm.graphics.Screen;
 import com.illumination.realm.input.Keyboard;
 
-@SuppressWarnings({ "serial" })
 public class Game extends Canvas implements Runnable {
 	public static int width = 480;
 	public static int height = width / 16 * 8;
