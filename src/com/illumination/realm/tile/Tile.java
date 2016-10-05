@@ -8,6 +8,8 @@ public class Tile {
 	public int x, y;
 	public Sprite sprite;
 	
+	public static Tile grass_green = new GrassTile(Sprite.grass_green);
+	
 	public Tile(Sprite sprite) {
 		this.sprite = sprite;
 	}
