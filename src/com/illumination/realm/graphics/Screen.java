@@ -28,7 +28,7 @@ public class Screen {
 	}
 
 	public void render() {
-	
+
 		for (int y1 = 0; y1 < height; y1++) {
 			if (y1 < 0 || y1 >= height)
 				break;
@@ -37,7 +37,7 @@ public class Screen {
 				if (x1 < 0 || x1 >= width)
 					break;
 				int x2 = x1;
-				int tileIndex = (x1 >> 4) + (y1 >> 4) * 64;
+				int tileIndex = ((x2 >> 4) & 63) + ((y2 >> 4) & 63) * 64;
 				pixels[x1 + y1 * width] = tiles[tileIndex];
 			}
 		}

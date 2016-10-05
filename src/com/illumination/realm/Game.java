@@ -14,9 +14,9 @@ import com.illumination.realm.graphics.Screen;
 
 @SuppressWarnings({ "serial", "unused" })
 public class Game extends Canvas implements Runnable {
-	public static int width = 320;
+	public static int width = 480;
 	public static int height = width / 16 * 8;
-	public static int scale = 3;
+	public static int scale = 2;
 	public static int sWidth = width * scale;
 	public static int sHeight = height * scale;
 
@@ -43,8 +43,9 @@ public class Game extends Canvas implements Runnable {
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Realm of the Mad God");
-		System.out.println("Starting");
+		System.out.println("Starting...");
 		thread.start();
+		System.out.println("Started...");
 	}
 
 	public synchronized void stop() {
@@ -57,7 +58,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void run() {
-		System.out.println("Running");
+		System.out.println("Running...");
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		final double ns = 1000000000.0 / 60.0;
@@ -71,10 +72,12 @@ public class Game extends Canvas implements Runnable {
 			while (delta >= 1) {
 				update();
 				updates++;
+				System.err.println("Updates |" + updates + "|");
 				delta--;
 			}
 			render();
 			frames++;
+			System.err.println("Frames |" + frames + "|");
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
@@ -87,10 +90,11 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
+		System.out.println("Updating...");
 	}
 
 	public void render() {
-		System.out.println("Rendering");
+		System.out.println("Rendering...");
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(3);
