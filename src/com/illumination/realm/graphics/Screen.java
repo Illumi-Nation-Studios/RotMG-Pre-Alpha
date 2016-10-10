@@ -5,7 +5,7 @@ import java.util.Random;
 import com.illumination.realm.tile.Tile;
 
 public class Screen {
-	private int width, height;
+	public int width, height;
 	public final int mapSize = 64;
 	public final int mapSize_mask = mapSize - 1;
 	public int[] tiles = new int[mapSize * mapSize];
