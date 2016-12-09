@@ -40,8 +40,7 @@ public class Screen {
 				if (x2 < 0 || x2 >= width) {
 					continue;
 				}
-				pixels[(x2) + (y2) * width] = Sprite.grass_green.pixels[(x1 & (Sprite.SIZE - 1))
-						+ (y1 & (Sprite.SIZE - 1)) * Sprite.SIZE];
+				pixels[(x1) + (y1) * width] = Sprite.grass1.pixels[(x1 & (Sprite.SIZE - 1)) + (y1 & (Sprite.SIZE - 1)) * Sprite.SIZE];
 			}
 		}
 	}

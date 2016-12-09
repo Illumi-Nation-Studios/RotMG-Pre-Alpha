@@ -7,7 +7,10 @@ public class Sprite {
 	public int[] pixels;
 	private SpriteSheet sheet;
 
-	public static Sprite grass_green = new Sprite(16, 6, 4, SpriteSheet.lofiEnvironment);
+	public static Sprite grass1 = new Sprite(16, 6, 4, SpriteSheet.lofiEnvironment);
+	public static Sprite grass2 = new Sprite(16, 6, 5, SpriteSheet.lofiEnvironment);
+
+	public static Sprite sand1 = new Sprite(16, 13, 11, SpriteSheet.lofiEnvironment);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;

@@ -14,6 +14,8 @@ import com.illumination.realm.graphics.Screen;
 import com.illumination.realm.input.Keyboard;
 
 public class Game extends Canvas implements Runnable {
+	
+	private static final long serialVersionUID = 1L;
 	public static int width = 480;
 	public static int height = width / 16 * 8;
 	public static int scale = 2;
@@ -62,7 +64,6 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void run() {
-		System.out.println("Running...");
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		final double ns = 1000000000.0 / 60.0;
@@ -77,12 +78,10 @@ public class Game extends Canvas implements Runnable {
 			while (delta >= 1) {
 				update();
 				updates++;
-				System.err.println("Updates |" + updates + "|");
 				delta--;
 			}
 			render();
 			frames++;
-			System.err.println("Frames |" + frames + "|");
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
@@ -97,7 +96,6 @@ public class Game extends Canvas implements Runnable {
 	int x = 0, y = 0;
 
 	public void update() {
-		System.out.println("Updating...");
 		key.update();
 		if (key.UP) {
 			y--;
@@ -114,7 +112,6 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
-		System.out.println("Rendering...");
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(3);

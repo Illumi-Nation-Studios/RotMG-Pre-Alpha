@@ -43,7 +43,7 @@ public class Level {
 	}
 
 	public Tile getTile(int x, int y) {
-		if (tiles[x * y + width] == 0) return Tile.grass_green;
+		if (tiles[x * y + width] == 0) return Tile.grass1;
 			return null;
 	}
 }
