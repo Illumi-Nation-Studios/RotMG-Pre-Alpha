@@ -12,7 +12,6 @@ public class SpriteSheet {
 	public int[] pixels;
 
 	public static SpriteSheet lofiEnvironment = new SpriteSheet("/environment/lofiEnvironment.png", 256);
-	
 
 	public SpriteSheet(String path, int size) {
 		this.path = path;

@@ -10,7 +10,7 @@ public class Sprite {
 	private SpriteSheet sheet;
 
 	public static Sprite voidSprite = new Sprite(16, 0);
-	
+
 	public static Sprite grass1 = new Sprite(16, 6, 4, SpriteSheet.lofiEnvironment);
 	public static Sprite grass2 = new Sprite(16, 6, 5, SpriteSheet.lofiEnvironment);
 
@@ -30,9 +30,11 @@ public class Sprite {
 		pixels = new int[SIZE * SIZE];
 		setColour(colour);
 	}
-	
+
 	private void setColour(int colour) {
-		Arrays.fill(pixels, colour);
+		for (int i = 0; i < SIZE * SIZE; i++) {
+			pixels[i] = colour;
+		}
 	}
 
 	private void load() {

@@ -12,15 +12,17 @@ import javax.swing.JFrame;
 
 import com.illumination.realm.graphics.Screen;
 import com.illumination.realm.input.Keyboard;
+import com.illumination.realm.level.Level;
+import com.illumination.realm.level.RandomLevel;
 
 public class Game extends Canvas implements Runnable {
-	
+
 	private static final long serialVersionUID = 1L;
-	public static int width = 480;
-	public static int height = width / 16 * 8;
+	public static int width = 490;
+	public static int height = width / 16 * 11;
 	public static int scale = 2;
-	public static int sWidth = width * scale;
-	public static int sHeight = height * scale;
+	public static int scaleWidth = width * scale;
+	public static int scaleHeight = height * scale;
 
 	public static String title = "RotMG Pre-Alpha |";
 
@@ -31,17 +33,20 @@ public class Game extends Canvas implements Runnable {
 	private Keyboard key;
 
 	private Screen screen;
+	private Level level;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
 	public Game() {
-		Dimension size = new Dimension(sWidth, sHeight);
+		Dimension size = new Dimension(scaleWidth, scaleHeight);
 		setPreferredSize(size);
 
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
+
+		level = new RandomLevel(64, 64);
 
 		addKeyListener(key);
 	}
@@ -119,8 +124,7 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-
-		screen.render(x, y);
+		level.render(x, y, screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
