@@ -20,14 +20,14 @@ import com.illumination.realm.level.RandomLevel;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public static int width = 430;
+	public static int width = 490;
 	public static int height = width / 16 * 11;
 	public static int scale = 2;
 	public static int scaleWidth = width * scale;
 	public static int scaleHeight = height * scale;
 	public static String _frames = "";
 	public static int _framerate;
- 
+
 	public static String title = "RotMG Pre-Alpha";
 
 	private Thread thread;
@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
 
 	private Screen screen;
 	private Level level;
-	
+
 	private Player player;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -61,9 +61,7 @@ public class Game extends Canvas implements Runnable {
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Realm of the Mad God");
-		System.out.println("Starting...");
 		thread.start();
-		System.out.println("Started...");
 	}
 
 	public synchronized void stop() {
@@ -114,6 +112,8 @@ public class Game extends Canvas implements Runnable {
 
 	public void render() {
 		_frames = "Framerate: " + _framerate;
+		int xScroll = player.x - (screen.width / 2) + 16;
+		int yScroll = player.y - (screen.height / 2) + 16;
 		
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
@@ -122,7 +122,7 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-		level.render(player.x, player.y, screen);
+		level.render(xScroll, yScroll, screen);
 		player.render(screen);
 
 		for (int i = 0; i < pixels.length; i++) {
@@ -131,25 +131,22 @@ public class Game extends Canvas implements Runnable {
 
 		Graphics g = bs.getDrawGraphics();
 
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(new Color(0x005555));
 		g.setXORMode(getBackground());
 		g.setFont(new Font("Sans Serif", 0, 12));
-		/**
 		g.drawString(title, 0, 12);
 		g.drawString(_frames, 0, 24);
 		g.drawString("Facing: " + player.facing, 0, 36);
 		g.drawString("X: " + (player.x >> 4) + " Y: " + (player.y >> 4), 0, 48);
-		**/
 		g.dispose();
 		bs.show();
 	}
 
 	public static void main(String[] args) {
 		Game game = new Game();
-
 		game.frame.setResizable(false);
 		game.frame.setTitle(Game.title + " |0|");
 		game.frame.add(game);
@@ -157,6 +154,7 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
+
 		game.start();
 	}
 }

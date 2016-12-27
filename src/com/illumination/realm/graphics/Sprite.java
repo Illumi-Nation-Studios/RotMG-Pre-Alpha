@@ -16,32 +16,28 @@ public class Sprite {
 	public static Sprite sandLight = new Sprite(16, 13, 11, SpriteSheet.lofiEnvironment);
 
 	//Rogue
+	public static Sprite rogueSide = new Sprite(16, 0, 0, SpriteSheet.lofiRogue);
 	public static Sprite rogueUp = new Sprite(16, 0, 2, SpriteSheet.lofiRogue);
 	public static Sprite rogueDown = new Sprite(16, 0, 1, SpriteSheet.lofiRogue);
-	public static Sprite rogueLeft = new Sprite(16, 1, 0, SpriteSheet.lofiRogue);
-	public static Sprite rogueRight = new Sprite(16, 1, 0, SpriteSheet.lofiRogue);
 	
 	//Rogue Walking
+	public static Sprite rogueSideWalking = new Sprite(16, 1, 0, SpriteSheet.lofiRogue);
 	public static Sprite rogueUpWalking = new Sprite(16, 2, 1, SpriteSheet.lofiRogue);
 	public static Sprite rogueDownWalking = new Sprite(16, 1, 1, SpriteSheet.lofiRogue);
-	public static Sprite rogueLeftWalking = new Sprite(16, 1, 0, SpriteSheet.lofiRogue);
-	public static Sprite rogueRightWalking = new Sprite(16, 1, 0, SpriteSheet.lofiRogue);
 	public static Sprite _rogueUpWalking = new Sprite(16, 2, 2, SpriteSheet.lofiRogue);
 	public static Sprite _rogueDownWalking = new Sprite(16, 1, 2, SpriteSheet.lofiRogue);
 	
 	//Archer
 	public static Sprite archerUp = new Sprite(16, 0, 2, SpriteSheet.lofiArcher);
 	public static Sprite archerDown = new Sprite(16, 0, 1, SpriteSheet.lofiArcher);
-	public static Sprite archerLeft = new Sprite(16, 0, 0, SpriteSheet.lofiArcher);
-	public static Sprite archerRight = new Sprite(16, 0, 0, SpriteSheet.lofiArcher);
+	public static Sprite archerSide = new Sprite(16, 0, 0, SpriteSheet.lofiArcher);
 	
 	//Archer Walking
-	public static Sprite archerUpWalking = new Sprite(16, 0, 2, SpriteSheet.lofiArcher);
+	public static Sprite archerSideWalking = new Sprite(16, 1, 0, SpriteSheet.lofiArcher);
+	public static Sprite archerUpWalking = new Sprite(16, 1, 2, SpriteSheet.lofiArcher);
 	public static Sprite archerDownWalking = new Sprite(16, 0, 1, SpriteSheet.lofiArcher);
-	public static Sprite archerLeftWalking = new Sprite(16, 0, 0, SpriteSheet.lofiArcher);
-	public static Sprite archerRightWalking = new Sprite(16, 0, 0, SpriteSheet.lofiArcher);
 	public static Sprite _archerUpWalking = new Sprite(16, 2, 2, SpriteSheet.lofiArcher);
-	public static Sprite _archerDownWalking = new Sprite(16, 1, 2, SpriteSheet.lofiArcher);
+	public static Sprite _archerDownWalking = new Sprite(16, 2, 1, SpriteSheet.lofiArcher);
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;

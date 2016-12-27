@@ -2,6 +2,7 @@ package com.illumination.realm.graphics;
 
 import java.util.Random;
 
+import com.illumination.realm.input.Keyboard;
 import com.illumination.realm.tile.Tile;
 
 public class Screen {
@@ -14,6 +15,7 @@ public class Screen {
 	public int xOffset, yOffset;
 
 	private Random rnd = new Random();
+	private Keyboard input;
 
 	public Screen(int width, int height) {
 		this.width = width;
@@ -37,43 +39,71 @@ public class Screen {
 			int ya = y + yp;
 			for (int x = 0; x < tile.sprite.SIZE; x++) {
 				int xa = x + xp;
-				if (xa < -tile.sprite.SIZE || xa >= width || ya < 0 || ya >= height)
-					break;
-				if (xa < 0)
-					xa = 0;
+				if (xa < -tile.sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
 				pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
 			}
 		}
 	}
 	
-	public void renderEntity16x(int xp, int yp, Sprite sprite) {
+	public void renderEntity32x(int xp, int yp, Sprite sprite, boolean flip) {
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < 32; y++) {
+			int ya = y + yp;
+			for (int x = 0; x < 32; x++) {
+				int xa = x + xp;
+				int xs = x;
+				if (flip == true) {
+					xs = 31 - x;
+				}
+				if (xa < -32 || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				int col = sprite.pixels[xs + y * 32];
+				if (col != 0xffff00ff) {
+					pixels[xa + ya * width] = col;
+				}
+			}
+		}
+	}
+	
+	public void renderEntity16x(int xp, int yp, Sprite sprite, boolean flip) {
 		xp -= xOffset;
 		yp -= yOffset;
 		for (int y = 0; y < 16; y++) {
 			int ya = y + yp;
 			for (int x = 0; x < 16; x++) {
 				int xa = x + xp;
-				if (xa < -16 || xa >= width || ya < 0 || ya >= height)
-					break;
-				if (xa < 0)
-					xa = 0;
-				pixels[xa + ya * width] = sprite.pixels[x + y * 16];
+				int xs = x;
+				if (flip == true) {
+					xs = 15 - x;
+				}
+				if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				int col = sprite.pixels[xs + y * 16];
+				if (col != 0xffff00ff) {
+					pixels[xa + ya * width] = col;
+				}
 			}
 		}
 	}
 
-	public void renderEntity8x(int xp, int yp, Sprite sprite) {
+	public void renderEntity8x(int xp, int yp, Sprite sprite, boolean flip) {
 		xp -= xOffset;
 		yp -= yOffset;
 		for (int y = 0; y < 8; y++) {
 			int ya = y + yp;
 			for (int x = 0; x < 8; x++) {
-				int xa = x + xp;
-				if (xa < -8 || xa >= width || ya < 0 || ya >= height)
-					break;
-				if (xa < 0)
-					xa = 0;
-				pixels[xa + ya * width] = sprite.pixels[x + y * 8];
+				int xa = x + xp;int xs = x;
+				if (flip == true) {
+					xs = 7 - x;
+				}
+				if (xa < -8 || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				int col = sprite.pixels[xs + y * 8];
+				if (col != 0xffff00ff) {
+					pixels[xa + ya * width] = col;
+				}
 			}
 		}
 	}
