@@ -22,11 +22,11 @@ public abstract class Mob extends Entity {
 			facing = east;
 		}
 		if (xAxis < 0) {
-			direction = 2;
+			direction = 3;
 			facing = west;
 		}
 		if (yAxis > 0) {
-			direction = 3;
+			direction = 2;
 			facing = south;
 		}
 		if (yAxis < 0) {
