@@ -19,11 +19,11 @@ public class Level {
 		loadLevel(path);
 	}
 
-	private void generateLevel() {
+	protected void generateLevel() {
 
 	}
 
-	private void loadLevel(String path) {
+	protected void loadLevel(String path) {
 
 	}
 
@@ -50,10 +50,11 @@ public class Level {
 	}
 
 	public Tile getTile(int x, int y) {
-		if (x < 0 || y < 0 || x >= width || y >= height)
-			return Tile.tileVoid;
-		if (tiles[x * y + width] == 0)
-			return Tile.sand1;
+		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.waterRight;
+		if (tiles[x * y + width] == 0) 	return Tile.sandLight;
+		if (tiles[x * y + width] == 2) 	return Tile.grassGreen;
+		if (tiles[x * y + width] == 3) 	return Tile.grassYellow;
+		if (tiles[x * y + width] == 4) 	return Tile.sandDark;
 		return Tile.tileVoid;
 	}
 }

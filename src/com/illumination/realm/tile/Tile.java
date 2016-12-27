@@ -8,9 +8,16 @@ public class Tile {
 	public int x, y;
 	public Sprite sprite;
 
-	public static Tile grass1 = new GrassTile(Sprite.grassGreen);
-	public static Tile grass2 = new GrassTile(Sprite.grassDarkGreen);
-	public static Tile sand1 = new SandTile(Sprite.sandLight);
+	public static Tile grassGreen = new GrassTile(Sprite.grassGreen);
+	public static Tile grassYellow = new GrassTile(Sprite.grassDarkGreen);
+	public static Tile sandLight = new SandTile(Sprite.sandLight);
+	public static Tile sandDark = new SandTile(Sprite.sandDark);
+	public static Tile waterLeft = new WaterTile(Sprite.waterLeft);
+	public static Tile waterRight = new WaterTile(Sprite.waterRight);
+	public static Tile mushroomRedSmall = new MushroomTile(Sprite.mushroomRedSmall);
+	public static Tile mushroomRedLarge = new MushroomTile(Sprite.mushroomRedLarge);
+	public static Tile treeMediumGreen = new TreeTile(Sprite.treeMediumGreen);
+	public static Tile treeMediumYellow = new TreeTile(Sprite.treeMediumYellow);
 
 	public static Tile tileVoid = new VoidTile(Sprite.voidSprite);
 

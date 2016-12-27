@@ -135,7 +135,6 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(new Color(0x005555));
-		g.setXORMode(getBackground());
 		g.setFont(new Font("Sans Serif", 0, 12));
 		g.drawString(title, 0, 12);
 		g.drawString(_frames, 0, 24);
@@ -147,6 +146,7 @@ public class Game extends Canvas implements Runnable {
 
 	public static void main(String[] args) {
 		Game game = new Game();
+		//game.frame.setUndecorated(true);
 		game.frame.setResizable(false);
 		game.frame.setTitle(Game.title + " |0|");
 		game.frame.add(game);
