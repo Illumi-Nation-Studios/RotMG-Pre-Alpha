@@ -3,6 +3,7 @@ package com.illumination.realm;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -10,6 +11,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.illumination.realm.entities.mobs.Player;
 import com.illumination.realm.graphics.Screen;
 import com.illumination.realm.input.Keyboard;
 import com.illumination.realm.level.Level;
@@ -23,8 +25,10 @@ public class Game extends Canvas implements Runnable {
 	public static int scale = 2;
 	public static int scaleWidth = width * scale;
 	public static int scaleHeight = height * scale;
-
-	public static String title = "RotMG Pre-Alpha |";
+	public static String _frames = "";
+	public static int _framerate;
+ 
+	public static String title = "RotMG Pre-Alpha";
 
 	private Thread thread;
 	private JFrame frame;
@@ -34,6 +38,8 @@ public class Game extends Canvas implements Runnable {
 
 	private Screen screen;
 	private Level level;
+	
+	private Player player;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
@@ -45,6 +51,7 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
+		player = new Player(key);
 
 		level = new RandomLevel(64, 64);
 
@@ -90,7 +97,8 @@ public class Game extends Canvas implements Runnable {
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				frame.setTitle(title + frames + "|");
+				frame.setTitle(title + " |" + frames + "|");
+				_framerate = frames;
 				updates = 0;
 				frames = 0;
 			}
@@ -98,25 +106,14 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	int x = 0, y = 0;
-
 	public void update() {
 		key.update();
-		if (key.UP) {
-			y--;
-		}
-		if (key.DOWN) {
-			y++;
-		}
-		if (key.LEFT) {
-			x--;
-		}
-		if (key.RIGHT) {
-			x++;
-		}
+		player.update();
 	}
 
 	public void render() {
+		_frames = "Framerate: {" + _framerate;
+		
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(3);
@@ -124,7 +121,7 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-		level.render(x, y, screen);
+		level.render(player.x, player.y, screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -135,6 +132,13 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.setColor(new Color(0x005555));
+		g.setXORMode(getBackground());
+		g.setFont(new Font("Sans Serif", 0, 12));
+		g.drawString("|" + title + "|", 0, 12);
+		g.drawString("|" + _frames + "}|", 0, 24);
+		g.drawString("|Facing: {" + player.facing + "}|", 0, 36);
+		g.drawString("|X: {" + (player.x >> 4) + "}| |Y: {" + (player.y >> 4) + "}|", 0, 48);
 		g.dispose();
 		bs.show();
 	}
@@ -143,7 +147,7 @@ public class Game extends Canvas implements Runnable {
 		Game game = new Game();
 
 		game.frame.setResizable(false);
-		game.frame.setTitle(Game.title + "0|");
+		game.frame.setTitle(Game.title + " |0|");
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

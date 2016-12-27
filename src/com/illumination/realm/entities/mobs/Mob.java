@@ -9,12 +9,17 @@ public abstract class Mob extends Entity {
 	protected int direction = 0;
 	protected boolean moving = false;
 
-	public char facing;
+	public String facing;
 	
-	public char north = 'N';
-	public char south = 'S';
-	public char east = 'E';
-	public char west = 'W';
+	public String north = "North";
+	public String south = "South";
+	public String east = "East";
+	public String west = "West";
+	
+	public String northWest = "North West";
+	public String northEast = "North East";
+	public String southWest = "South West";
+	public String southEast = "South East";
 	
 	public void move(int xAxis, int yAxis) {
 		if (xAxis > 0) {
