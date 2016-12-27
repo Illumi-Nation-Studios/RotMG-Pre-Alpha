@@ -1,5 +1,7 @@
 package com.illumination.realm.entities.mobs;
 
+import com.illumination.realm.graphics.Screen;
+import com.illumination.realm.graphics.Sprite;
 import com.illumination.realm.input.Keyboard;
 
 public class Player extends Mob {
@@ -17,31 +19,34 @@ public class Player extends Mob {
 	}
 
 	public void update() {
+		int xa = 0, ya = 0;
 		if (input.up) {
-			y--;
+			ya--;
 			facing = north;
 		}
 		if (input.down) {
-			y++;
+			ya++;
 			facing = south;
 		}
 		if (input.left) {
-			x--;
+			xa--;
 			facing = west;
 		}
 		if (input.right) {
-			x++;
+			xa++;
 			facing = east;
 		}
-		/*
-			if (input.up && input.left) facing = northWest;
-			if (input.up && input.right) facing = northEast;
-			if (input.down && input.left) facing = southWest;
-			if (input.down && input.right) facing = southEast;
-		*/
+		
+		if (xa != 0 || ya != 0) move(xa, ya);
+		
+		if (input.up && input.left) facing = northWest;
+		if (input.up && input.right) facing = northEast;
+		if (input.down && input.left) facing = southWest;
+		if (input.down && input.right) facing = southEast;
 	}
 
-	public void render() {
+	public void render(Screen screen) {
+		screen.renderEntity16x(x, y, Sprite.rogueDown);
 	}
 
 }

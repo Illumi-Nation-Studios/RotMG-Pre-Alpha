@@ -12,7 +12,10 @@ public class SpriteSheet {
 	public int[] pixels;
 
 	public static SpriteSheet lofiEnvironment = new SpriteSheet("/environment/lofiEnvironment.png", 256);
-
+	
+	public static SpriteSheet lofiRogue = new SpriteSheet("/char/rogue.png", 48);
+	public static SpriteSheet lofiArcher = new SpriteSheet("/char/archer.png", 48);
+	
 	public SpriteSheet(String path, int size) {
 		this.path = path;
 		SIZE = size;

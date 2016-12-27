@@ -20,7 +20,7 @@ import com.illumination.realm.level.RandomLevel;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public static int width = 490;
+	public static int width = 430;
 	public static int height = width / 16 * 11;
 	public static int scale = 2;
 	public static int scaleWidth = width * scale;
@@ -75,6 +75,7 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public void run() {
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
@@ -112,7 +113,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
-		_frames = "Framerate: {" + _framerate;
+		_frames = "Framerate: " + _framerate;
 		
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
@@ -122,6 +123,7 @@ public class Game extends Canvas implements Runnable {
 
 		screen.clear();
 		level.render(player.x, player.y, screen);
+		player.render(screen);
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -135,10 +137,12 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(new Color(0x005555));
 		g.setXORMode(getBackground());
 		g.setFont(new Font("Sans Serif", 0, 12));
-		g.drawString("|" + title + "|", 0, 12);
-		g.drawString("|" + _frames + "}|", 0, 24);
-		g.drawString("|Facing: {" + player.facing + "}|", 0, 36);
-		g.drawString("|X: {" + (player.x >> 4) + "}| |Y: {" + (player.y >> 4) + "}|", 0, 48);
+		/**
+		g.drawString(title, 0, 12);
+		g.drawString(_frames, 0, 24);
+		g.drawString("Facing: " + player.facing, 0, 36);
+		g.drawString("X: " + (player.x >> 4) + " Y: " + (player.y >> 4), 0, 48);
+		**/
 		g.dispose();
 		bs.show();
 	}
