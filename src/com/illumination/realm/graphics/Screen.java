@@ -22,7 +22,7 @@ public class Screen {
 		this.height = height;
 		pixels = new int[width * height];
 		for (int i = 0; i < mapSize * mapSize; i++) {
-			tiles[i] = rnd.nextInt(0xfffffff);
+			tiles[i] = rnd.nextInt(0xFFFFFF);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class Screen {
 				if (xa < -32 || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				int col = sprite.pixels[xs + y * 32];
-				if (col != 0xffff00ff) {
+				if (col != 0xFFFF00FF) {
 					pixels[xa + ya * width] = col;
 				}
 			}
@@ -81,7 +81,7 @@ public class Screen {
 				if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				int col = sprite.pixels[xs + y * 16];
-				if (col != 0xffff00ff) {
+				if (col != 0xFFFF00FF) {
 					pixels[xa + ya * width] = col;
 				}
 			}
@@ -101,7 +101,7 @@ public class Screen {
 				if (xa < -8 || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				int col = sprite.pixels[xs + y * 8];
-				if (col != 0xffff00ff) {
+				if (col != 0xFFFF00FF) {
 					pixels[xa + ya * width] = col;
 				}
 			}

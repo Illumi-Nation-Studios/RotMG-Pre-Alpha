@@ -15,8 +15,10 @@ public class Sprite {
 	public static Sprite grassDarkGreen = new Sprite(16, 6, 5, SpriteSheet.lofiEnvironment);
 	public static Sprite sandLight = new Sprite(16, 13, 11, SpriteSheet.lofiEnvironment);
 	public static Sprite sandDark = new Sprite(16, 14, 11, SpriteSheet.lofiEnvironment);
-	public static Sprite waterLeft = new Sprite(16, 12, 11, SpriteSheet.lofiEnvironment);
-	public static Sprite waterRight = new Sprite(16, 12, 12, SpriteSheet.lofiEnvironment);
+	public static Sprite waterLeft = new Sprite(16, 2, 7, SpriteSheet.lofiEnvironment);
+	public static Sprite waterRight = new Sprite(16, 2, 8, SpriteSheet.lofiEnvironment);
+	public static Sprite waterDarkLeft = new Sprite(16, 12, 11, SpriteSheet.lofiEnvironment);
+	public static Sprite waterDarkRight = new Sprite(16, 12, 12, SpriteSheet.lofiEnvironment);
 
 	// Objects
 	public static Sprite rockSmall = new Sprite(16, 9, 6, SpriteSheet.lofiEnvironment);

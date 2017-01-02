@@ -6,17 +6,20 @@ import com.illumination.realm.tile.Tile;
 public class Level {
 
 	protected int width, height;
-	protected int[] tiles;
+	protected int[] tileInt;
+	
+	public int mapSize = 2048;
 
 	public Level(int width, int height) {
 		this.width = width;
 		this.height = height;
-		tiles = new int[width * height];
+		tileInt = new int[width * height];
 		generateLevel();
 	}
 
 	public Level(String path) {
 		loadLevel(path);
+		generateLevel();
 	}
 
 	protected void generateLevel() {
@@ -31,6 +34,7 @@ public class Level {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void time() {
 
 	}
@@ -50,11 +54,11 @@ public class Level {
 	}
 
 	public Tile getTile(int x, int y) {
-		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.waterRight;
-		if (tiles[x * y + width] == 0) 	return Tile.sandLight;
-		if (tiles[x * y + width] == 2) 	return Tile.grassGreen;
-		if (tiles[x * y + width] == 3) 	return Tile.grassYellow;
-		if (tiles[x * y + width] == 4) 	return Tile.sandDark;
+		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.tileVoid;
+		if (tileInt[x * y + width] == 0) return Tile.sandLight;
+		if (tileInt[x * y + width] == 2) return Tile.grassGreen;
+		if (tileInt[x * y + width] == 3) return Tile.grassYellow;
+		if (tileInt[x * y + width] == 4) return Tile.sandDark;
 		return Tile.tileVoid;
 	}
 }

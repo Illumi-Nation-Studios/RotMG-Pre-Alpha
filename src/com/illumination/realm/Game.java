@@ -15,12 +15,12 @@ import com.illumination.realm.entities.mobs.Player;
 import com.illumination.realm.graphics.Screen;
 import com.illumination.realm.input.Keyboard;
 import com.illumination.realm.level.Level;
-import com.illumination.realm.level.RandomLevel;
+import com.illumination.realm.level.SpawnLevel;
 
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public static int width = 490;
+	public static int width = 430;
 	public static int height = width / 16 * 11;
 	public static int scale = 2;
 	public static int scaleWidth = width * scale;
@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable {
 		key = new Keyboard();
 		player = new Player(key);
 
-		level = new RandomLevel(64, 64);
+		level = new SpawnLevel("/maps/nexus/nexusmap.png");
 
 		addKeyListener(key);
 	}
@@ -134,7 +134,7 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.setColor(new Color(0x005555));
+		g.setColor(new Color(0xFFFFFF));
 		g.setFont(new Font("Sans Serif", 0, 12));
 		g.drawString(title, 0, 12);
 		g.drawString(_frames, 0, 24);
