@@ -20,8 +20,9 @@ import com.illumination.realm.level.SpawnLevel;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public static int width = 430;
-	public static int height = width / 16 * 12;
+	public static int width = 400;
+	public static int height = 200;
+	//public static int height = width / 16 * 12;
 	public static int scale = 2;
 	public static int scaleWidth = width * scale;
 	public static int scaleHeight = height * scale;
@@ -51,7 +52,7 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		player = new Player(key);
+		player = new Player(30, 30, key);
 
 		level = new SpawnLevel("/maps/nexus/nexusmap.png");
 
@@ -115,6 +116,9 @@ public class Game extends Canvas implements Runnable {
 		int xScroll = player.x - (screen.width / 2) + 16;
 		int yScroll = player.y - (screen.height / 2) + 16;
 		
+		String xString = "x: " + (player.x >> 4);	
+		String yString = " y: " + (player.y >> 4);
+		
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(3);
@@ -139,14 +143,14 @@ public class Game extends Canvas implements Runnable {
 		g.drawString(title, 0, 12);
 		g.drawString(_frames, 0, 24);
 		g.drawString("Facing: " + player.facing, 0, 36);
-		g.drawString("X: " + (player.x >> 4) + " Y: " + (player.y >> 4), 0, 48);
+		g.drawString(xString + yString, 0, 48);
 		g.dispose();
 		bs.show();
 	}
 
 	public static void main(String[] args) {
 		Game game = new Game();
-		//game.frame.setUndecorated(true);
+		game.frame.setUndecorated(true);
 		game.frame.setResizable(false);
 		game.frame.setTitle(Game.title + " |0|");
 		game.frame.add(game);
