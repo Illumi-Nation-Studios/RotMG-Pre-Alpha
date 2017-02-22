@@ -7,6 +7,7 @@ public class Level {
 
 	protected int width, height;
 	protected int[] tileInt;
+	protected int[] tiles;
 	
 	public int mapSize = 2048;
 
@@ -55,10 +56,10 @@ public class Level {
 
 	public Tile getTile(int x, int y) {
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.tileVoid;
-		if (tileInt[x * y + width] == 0) return Tile.sandLight;
-		if (tileInt[x * y + width] == 2) return Tile.grassGreen;
-		if (tileInt[x * y + width] == 3) return Tile.grassYellow;
-		if (tileInt[x * y + width] == 4) return Tile.sandDark;
+		if (tiles[x * y + width] == 0xff000000) return Tile.sandLight;
+		if (tiles[x * y + width] == 0xFF00FF00) return Tile.grassGreen;
+		if (tiles[x * y + width] == 0xff000000) return Tile.grassYellow;
+		if (tiles[x * y + width] == 0xff000000) return Tile.sandDark;
 		return Tile.tileVoid;
 	}
 }
